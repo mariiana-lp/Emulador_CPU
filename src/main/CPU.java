@@ -61,30 +61,30 @@ public class CPU {
         {
             if(Instrucciones.get(index).startsWith("MOV R"))
             {
+                String[] MOVR = subrutina[index].split(" ")[1].split(",");
+                CPU.registros.put(MOVR[1],CPU.registros.get(MOVR[0]));
                 System.out.println("se entro a la instruccion MOV Rxx");
                 index++;
                 continue;
             }
             if(Instrucciones.get(index).startsWith("MOV"))
             {
-                String accion=subrutina[index].split(" ")[0];
                 String[] valores = subrutina[index].split(" ")[1].split(",");
-                //valores[0]=instruccion.split(" ")[1].split(",")[0];//Primer numero o registro
-                //valores[1]=instruccion.split(" ")[1].split(",")[1];//Segundo registro
-                //Hola, puedes oirme?
-                // if(accion=="MOV"){
-                //if(Integer.parseInt(valores[0])){
                 CPU.registros.put(valores[1],Integer.parseInt(valores[0]));
                 System.out.println("se entro a la instruccion MOV d");
                 index++;
             }
             if(Instrucciones.get(index).startsWith("ADD"))
             {
+                String[] ADD = subrutina[index].split(" ")[1].split(",");
+                CPU.registros.put(ADD[0],CPU.registros.get(ADD[0])+CPU.registros.get(ADD[1]));
                 System.out.println("se entro a la instruccion ADD");
                 index++;
             }
             if(Instrucciones.get(index).startsWith("DEC"))
             {
+                String[] DEC = subrutina[index].split(" ");
+                CPU.registros.put(DEC[1],CPU.registros.get(DEC[1])-1);
                 System.out.println("se entro a la instruccion DEC");
                 index++;
             }
@@ -100,13 +100,20 @@ public class CPU {
             }
             if(Instrucciones.get(index).startsWith("JMP"))
             {
+                String[] JMP = subrutina[index].split(" ")[1].split(",");
+                index=Integer.parseInt(JMP[0])-1;
                 System.out.println("se entro a la instruccion JMP");
-                index++;
             }
             if(Instrucciones.get(index).startsWith("JZ"))
             {
+                if(CPU.registros.get("R00")==0){
+                    String[] JMP = subrutina[index].split(" ")[1].split(",");
+                    index=Integer.parseInt(JMP[0])-1;
+                }
+                else {
+                    index++;
+                }
                 System.out.println("se entro a la instruccion JZ");
-                index++;
             }
             if(Instrucciones.get(index).startsWith("NOP"))
             {
@@ -117,10 +124,11 @@ public class CPU {
     }
     public static void main(String[] args) {
         int[] registro = new int[42];
-        String[] subrutina = {"MOV 5,R01", "MOV 10,R02", "JZ 7", "ADD R02,R01", "DEC R00", "JMP 3", "MOV R02,R42"};
+        String[] subrutina = {"MOV 5,R00", "MOV 10,R01", "JZ 7", "ADD R02,R01", "DEC R00", "JMP 3", "MOV R02,R42"};
         CPU.funcionesCPU(subrutina);
         System.out.println(CPU.registros.get("R01"));
         System.out.println(CPU.registros.get("R02"));
+        System.out.println(CPU.registros.get("R42"));
     }
 
 
