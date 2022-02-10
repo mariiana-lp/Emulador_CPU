@@ -6,18 +6,20 @@ import java.math.BigInteger;
 
 public class logica {
 
+    //public static HashMap<String, Integer> registros = new HashMap<String, Integer>();
+
     public static void main(String[] args) {
-        List<Registro> lista = new ArrayList<>();
-        Registro R01 = new Registro("R01", 0);
-        lista.add(R01);
-        Registro R02 = new Registro("R02", 1);
-        lista.add(R02);
+
+
+
+        //List<Registro> lista = new ArrayList<>();
+//        Registro R01 = new Registro("R01", 0);
+//        lista.add(R01);
+//        Registro R02 = new Registro("R02", 1);
+//        lista.add(R02);
         //ADD_calculaMood(R01, R02);
         int y = Integer.reverse(1);
         System.out.println(y);
-
-        double x = Math.pow(2, 32)-1;
-        System.out.println(x);
 
 
 
