@@ -5,6 +5,7 @@ import java.util.List;
 import java.math.BigInteger;
 
 public class logica {
+
     public static void main(String[] args) {
         List<Registro> lista = new ArrayList<>();
         Registro R01 = new Registro("R01", 0);
